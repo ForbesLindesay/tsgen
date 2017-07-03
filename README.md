@@ -9,15 +9,13 @@ Convert flow types to typescript types, automatically
 ## Installation
 
 ```
-npm install tsgen --save
+npm install tsgen --save-dev
 ```
 
 ## Usage
 
-```js
-var tsgen = require('tsgen');
-
-// ...
+```
+tsgen "lib/**/*.js.flow" --ignore "lib/internal-modules/**/*.js.flow"
 ```
 
 ## License
