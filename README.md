@@ -1,5 +1,7 @@
 # tsgen
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/ForbesLindesay/tsgen.svg)](https://greenkeeper.io/)
+
 Convert flow types to typescript types, automatically
 
 [![Build Status](https://img.shields.io/travis/ForbesLindesay/tsgen/master.svg)](https://travis-ci.org/ForbesLindesay/tsgen)
