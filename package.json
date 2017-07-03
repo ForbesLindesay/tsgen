@@ -1,0 +1,78 @@
+{
+  "name": "tsgen",
+  "version": "0.0.0",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "description": "Convert flow types to typescript types, automatically",
+  "keywords": [],
+  "files": [
+    "lib/"
+  ],
+  "bin": {
+    "tsgen": "./lib/cli.js"
+  },
+  "dependencies": {
+    "@types/babel-code-frame": "^6.20.1",
+    "@types/babel-types": "^6.7.16",
+    "@types/babylon": "^6.16.1",
+    "@types/micromatch": "^2.3.29",
+    "babel-code-frame": "^6.22.0",
+    "babel-types": "^6.25.0",
+    "babylon": "^6.17.4",
+    "lsr": "^2.0.0",
+    "micromatch": "^3.0.3",
+    "prettier": "^1.5.2"
+  },
+  "devDependencies": {
+    "@types/jest": "*",
+    "babel-cli": "*",
+    "babel-jest": "*",
+    "babel-preset-forbeslindesay": "*",
+    "eslint": "*",
+    "eslint-config-forbeslindesay": "*",
+    "flowgen2": "*",
+    "husky": "*",
+    "jest": "*",
+    "lint-staged": "*",
+    "ts-jest": "*",
+    "typescript": "*"
+  },
+  "scripts": {
+    "precommit": "lint-staged",
+    "prepublish": "npm run build",
+    "prettier": "prettier --parser typescript --single-quote --trailing-comma all --no-bracket-spacing --write \"src/**/*.js\"",
+    "prettier:check": "prettier --parser typescript --single-quote --trailing-comma all --no-bracket-spacing --list-different \"src/**/*.js\"",
+    "build": "tsc",
+    "test": "jest ./src --coverage",
+    "watch": "jest ./src --watch"
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --parser typescript --single-quote --trailing-comma all --no-bracket-spacing --write",
+      "git add"
+    ]
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "transform": {
+      "\\.(ts|tsx)$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testMatch": [
+      "**/*.test.(ts|tsx|js)"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ForbesLindesay/tsgen.git"
+  },
+  "author": {
+    "name": "Forbes Lindesay",
+    "url": "http://github.com/ForbesLindesay"
+  },
+  "license": "MIT"
+}

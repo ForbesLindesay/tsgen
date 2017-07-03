@@ -26,7 +26,7 @@
  * }
  */
 
-function hideText() {
+function hideText(): {'text-indent': string, 'overflow': string, 'white-space': string} {
   return {
     'text-indent': '101%',
     'overflow': 'hidden',

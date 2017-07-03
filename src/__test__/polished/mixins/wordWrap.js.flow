@@ -23,7 +23,7 @@
  * }
  */
 
-function wordWrap(wrap: string = 'break-word') {
+function wordWrap(wrap: string = 'break-word'): {'overflow-wrap': string, 'word-wrap': string, 'word-break': string} {
   const wordBreak = wrap === 'break-word' ? 'break-all' : wrap
   return {
     'overflow-wrap': wrap,
