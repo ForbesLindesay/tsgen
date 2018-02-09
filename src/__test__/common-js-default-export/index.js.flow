@@ -1,0 +1,5 @@
+function curriedReadableColor(color: string): string {
+  return color;
+}
+
+export default curriedReadableColor;

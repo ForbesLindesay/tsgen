@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`./index.js.flow 1`] = `
+"declare function curriedReadableColor(color: string): string;
+
+export = curriedReadableColor;
+"
+`;

@@ -18,6 +18,8 @@ npm install tsgen --save-dev
 tsgen "lib/**/*.js.flow" --ignore "lib/internal-modules/**/*.js.flow"
 ```
 
+If you're using `export default foo;` style for exports in flow, but compiling that to `module.exports = ` style CommonJS exports, you will also need to pass in `--common-js-default-export`.
+
 ## License
 
 MIT

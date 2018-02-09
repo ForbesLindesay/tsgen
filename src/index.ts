@@ -6,7 +6,11 @@ import {format} from 'prettier';
 import Context from './Context';
 import walk from './walkers';
 
-export function convertFile(filename: string) {
+export interface Options {
+  commonJsDefaultExport?: boolean;
+}
+
+export function convertFile(filename: string, options: Options = {}) {
   const src = readFileSync(filename, 'utf8');
   const ast = parse(src, {
     sourceType: 'module',
@@ -27,7 +31,7 @@ export function convertFile(filename: string) {
   const ctx = new Context(filename, src);
   ast.program.body.map(statement => walk(statement, ctx));
 
-  return format(ctx.output.toString(), {
+  return format(ctx.output.toString(options), {
     singleQuote: true,
     trailingComma: 'all',
     parser: 'typescript',
@@ -39,6 +43,7 @@ export function convertDirectory(
   dirname: string,
   patterns: string[],
   ignorePatterns: string[] = [],
+  options: Options = {},
 ) {
   lsrSync(process.cwd()).forEach(entry => {
     if (
@@ -46,7 +51,7 @@ export function convertDirectory(
       patterns.some(p => isMatch(entry.path.substr(2), p)) &&
       !ignorePatterns.some(p => isMatch(entry.path.substr(2), p))
     ) {
-      const result = convertFile(entry.fullPath);
+      const result = convertFile(entry.fullPath, options);
       writeFileSync(entry.fullPath.replace(/.js(.flow)?$/, '.d.ts'), result);
     }
   });

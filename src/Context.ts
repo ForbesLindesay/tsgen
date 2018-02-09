@@ -24,6 +24,9 @@ export type DeclarationType =
   | bt.DeclareFunction
   | SingleVariableDeclaration;
 
+export interface ToStringOptions {
+  commonJsDefaultExport?: boolean;
+}
 export class Output {
   readonly imports: Array<string> = [];
   readonly declarations: Array<string> = [];
@@ -57,13 +60,16 @@ export class Output {
       }
     }
   }
-  toString(): string {
+  toString(options: ToStringOptions = {}): string {
     this.ctx.namedExports.forEach(e =>
       this.exports.push(`export ${print(e, this.ctx)};`),
     );
     if (this.ctx.defaultExport) {
       this.exports.push(
-        `export default ${print(this.ctx.defaultExport, this.ctx)};`,
+        `export ${options.commonJsDefaultExport ? '=' : 'default'} ${print(
+          this.ctx.defaultExport,
+          this.ctx,
+        )};`,
       );
     }
     return (
