@@ -46,6 +46,6 @@ export default function walk(
           "', node);\n" +
           '}\n',
       );
-      throw ctx.getError('Unsupported node type', node);
+      throw ctx.getError('Unsupported node type ' + node.type, node);
   }
 }
