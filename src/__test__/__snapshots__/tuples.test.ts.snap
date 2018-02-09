@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`./index.js.flow 1`] = `
+"declare function transitions(
+  ...properties: Array<string> | [Array<string>, string]
+): Object;
+
+export default transitions;
+"
+`;

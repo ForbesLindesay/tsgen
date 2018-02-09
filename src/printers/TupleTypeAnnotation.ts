@@ -6,5 +6,5 @@ export default function printTupleTypeAnnotation(
   node: bt.TupleTypeAnnotation,
   ctx: Context,
 ): string {
-  throw ctx.getError('Unsupported type TupleTypeAnnotation', node);
+  return '[' + node.types.map(t => print(t, ctx)).join(',') + ']';
 }
