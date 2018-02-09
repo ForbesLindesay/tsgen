@@ -1,6 +1,18 @@
 import {readdirSync, readFileSync, writeFileSync} from 'fs';
+import {format} from 'prettier';
 
 function write(filename: string, str: string) {
+  let s = null;
+  while (s !== str) {
+    s = str;
+    str = format(str, {
+      bracketSpacing: false,
+      singleQuote: true,
+      trailingComma: 'all',
+      parser: 'typescript',
+      filepath: filename,
+    });
+  }
   let old = null;
   try {
     old = readFileSync(filename, 'utf8');
