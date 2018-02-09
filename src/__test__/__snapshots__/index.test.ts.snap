@@ -1,43 +1,43 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`./color/adjustHue.js.flow 1`] = `
-"declare function curriedAdjustHueWith1(color: string): string
-declare function curriedAdjustHue(degree: number): typeof curriedAdjustHueWith1
-declare function curriedAdjustHue(degree: number, color: string): string
+"declare function curriedAdjustHueWith1(color: string): string;
+declare function curriedAdjustHue(degree: number): typeof curriedAdjustHueWith1;
+declare function curriedAdjustHue(degree: number, color: string): string;
 
 export default curriedAdjustHue;
 "
 `;
 
 exports[`./color/complement.js.flow 1`] = `
-"declare function complement(color: string): string
+"declare function complement(color: string): string;
 
 export default complement;
 "
 `;
 
 exports[`./color/darken.js.flow 1`] = `
-"declare function curriedDarkenWith1(color: string): string
-declare function curriedDarken(amount: number): typeof curriedDarkenWith1
-declare function curriedDarken(amount: number, color: string): string
+"declare function curriedDarkenWith1(color: string): string;
+declare function curriedDarken(amount: number): typeof curriedDarkenWith1;
+declare function curriedDarken(amount: number, color: string): string;
 
 export default curriedDarken;
 "
 `;
 
 exports[`./color/desaturate.js.flow 1`] = `
-"declare function curriedDesaturateWith1(color: string): string
+"declare function curriedDesaturateWith1(color: string): string;
 declare function curriedDesaturate(
   amount: number,
-): typeof curriedDesaturateWith1
-declare function curriedDesaturate(amount: number, color: string): string
+): typeof curriedDesaturateWith1;
+declare function curriedDesaturate(amount: number, color: string): string;
 
 export default curriedDesaturate;
 "
 `;
 
 exports[`./color/grayscale.js.flow 1`] = `
-"declare function grayscale(color: string): string
+"declare function grayscale(color: string): string;
 
 export default grayscale;
 "
@@ -50,7 +50,7 @@ declare function hsl(
   value: HslColor | number,
   saturation?: number,
   lightness?: number,
-): string
+): string;
 
 export default hsl;
 "
@@ -64,51 +64,51 @@ declare function hsla(
   saturation?: number,
   lightness?: number,
   alpha?: number,
-): string
+): string;
 
 export default hsla;
 "
 `;
 
 exports[`./color/invert.js.flow 1`] = `
-"declare function invert(color: string): string
+"declare function invert(color: string): string;
 
 export default invert;
 "
 `;
 
 exports[`./color/lighten.js.flow 1`] = `
-"declare function curriedLightenWith1(color: string): string
-declare function curriedLighten(amount: number): typeof curriedLightenWith1
-declare function curriedLighten(amount: number, color: string): string
+"declare function curriedLightenWith1(color: string): string;
+declare function curriedLighten(amount: number): typeof curriedLightenWith1;
+declare function curriedLighten(amount: number, color: string): string;
 
 export default curriedLighten;
 "
 `;
 
 exports[`./color/mix.js.flow 1`] = `
-"declare function curriedMixWith2(otherColor: string): string
-declare function curriedMixWith1(color: string): typeof curriedMixWith2
-declare function curriedMixWith1(color: string, otherColor: string): string
-declare function curriedMix(weight?: number): typeof curriedMixWith1
+"declare function curriedMixWith2(otherColor: string): string;
+declare function curriedMixWith1(color: string): typeof curriedMixWith2;
+declare function curriedMixWith1(color: string, otherColor: string): string;
+declare function curriedMix(weight?: number): typeof curriedMixWith1;
 declare function curriedMix(
   weight: number,
   color: string,
-): typeof curriedMixWith2
+): typeof curriedMixWith2;
 declare function curriedMix(
   weight: number,
   color: string,
   otherColor: string,
-): string
+): string;
 
 export default curriedMix;
 "
 `;
 
 exports[`./color/opacify.js.flow 1`] = `
-"declare function curriedOpacifyWith1(color: string): string
-declare function curriedOpacify(amount: number): typeof curriedOpacifyWith1
-declare function curriedOpacify(amount: number, color: string): string
+"declare function curriedOpacifyWith1(color: string): string;
+declare function curriedOpacify(amount: number): typeof curriedOpacifyWith1;
+declare function curriedOpacify(amount: number, color: string): string;
 
 export default curriedOpacify;
 "
@@ -118,7 +118,7 @@ exports[`./color/parseToHsl.js.flow 1`] = `
 "import { HslColor } from '../types/color';
 import { HslaColor } from '../types/color';
 
-declare function parseToHsl(color: string): HslColor | HslaColor
+declare function parseToHsl(color: string): HslColor | HslaColor;
 
 export default parseToHsl;
 "
@@ -128,7 +128,7 @@ exports[`./color/parseToRgb.js.flow 1`] = `
 "import { RgbColor } from '../types/color';
 import { RgbaColor } from '../types/color';
 
-declare function parseToRgb(color: string): RgbColor | RgbaColor
+declare function parseToRgb(color: string): RgbColor | RgbaColor;
 
 export default parseToRgb;
 "
@@ -141,7 +141,7 @@ declare function rgb(
   value: RgbColor | number,
   green?: number,
   blue?: number,
-): string
+): string;
 
 export default rgb;
 "
@@ -155,65 +155,68 @@ declare function rgba(
   secondValue?: number,
   thirdValue?: number,
   fourthValue?: number,
-): string
+): string;
 
 export default rgba;
 "
 `;
 
 exports[`./color/saturate.js.flow 1`] = `
-"declare function curriedSaturateWith1(color: string): string
-declare function curriedSaturate(amount: number): typeof curriedSaturateWith1
-declare function curriedSaturate(amount: number, color: string): string
+"declare function curriedSaturateWith1(color: string): string;
+declare function curriedSaturate(amount: number): typeof curriedSaturateWith1;
+declare function curriedSaturate(amount: number, color: string): string;
 
 export default curriedSaturate;
 "
 `;
 
 exports[`./color/setHue.js.flow 1`] = `
-"declare function curriedSetHueWith1(color: string): string
-declare function curriedSetHue(hue: number): typeof curriedSetHueWith1
-declare function curriedSetHue(hue: number, color: string): string
+"declare function curriedSetHueWith1(color: string): string;
+declare function curriedSetHue(hue: number): typeof curriedSetHueWith1;
+declare function curriedSetHue(hue: number, color: string): string;
 
 export default curriedSetHue;
 "
 `;
 
 exports[`./color/setLightness.js.flow 1`] = `
-"declare function curriedSetLightnessWith1(color: string): string
+"declare function curriedSetLightnessWith1(color: string): string;
 declare function curriedSetLightness(
   lightness: number,
-): typeof curriedSetLightnessWith1
-declare function curriedSetLightness(lightness: number, color: string): string
+): typeof curriedSetLightnessWith1;
+declare function curriedSetLightness(lightness: number, color: string): string;
 
 export default curriedSetLightness;
 "
 `;
 
 exports[`./color/setSaturation.js.flow 1`] = `
-"declare function curriedSetSaturationWith1(color: string): string
+"declare function curriedSetSaturationWith1(color: string): string;
 declare function curriedSetSaturation(
   saturation: number,
-): typeof curriedSetSaturationWith1
-declare function curriedSetSaturation(saturation: number, color: string): string
+): typeof curriedSetSaturationWith1;
+declare function curriedSetSaturation(
+  saturation: number,
+  color: string,
+): string;
 
 export default curriedSetSaturation;
 "
 `;
 
 exports[`./color/shade.js.flow 1`] = `
-"declare function curriedShadeWith1(color: string): string
-declare function curriedShade(percentage: number): typeof curriedShadeWith1
-declare function curriedShade(percentage: number, color: string): string
+"declare function curriedShadeWith1(color: string): string;
+declare function curriedShade(percentage: number): typeof curriedShadeWith1;
+declare function curriedShade(percentage: number, color: string): string;
 
 export default curriedShade;
 "
 `;
 
 exports[`./color/tint.js.flow 1`] = `
-"declare function curriedTintWith1(color: string): string
-declare function curriedTint(percentage: number): typeof curriedTintWith1
-declare function curriedTint(percentage: number, color: string): string
+"declare function curriedTintWith1(color: string): string;
+declare function curriedTint(percentage: number): typeof curriedTintWith1;
+declare function curriedTint(percentage: number, color: string): string;
 
 export default curriedTint;
 "
@@ -227,18 +230,18 @@ import { HslaColor } from '../types/color';
 
 declare function toColorString(
   color: RgbColor | RgbaColor | HslColor | HslaColor,
-): string
+): string;
 
 export default toColorString;
 "
 `;
 
 exports[`./color/transparentize.js.flow 1`] = `
-"declare function curriedTransparentizeWith1(color: string): string
+"declare function curriedTransparentizeWith1(color: string): string;
 declare function curriedTransparentize(
   amount: number,
-): typeof curriedTransparentizeWith1
-declare function curriedTransparentize(amount: number, color: string): string
+): typeof curriedTransparentizeWith1;
+declare function curriedTransparentize(amount: number, color: string): string;
 
 export default curriedTransparentize;
 "
@@ -248,7 +251,7 @@ exports[`./helpers/directionalProperty.js.flow 1`] = `
 "declare function directionalProperty(
   property: string,
   ...values: Array<null | void | string>
-): Object
+): Object;
 
 export default directionalProperty;
 "
@@ -304,7 +307,7 @@ declare function modularScale(
   steps: number,
   base?: number | string,
   ratio?: Ratio,
-): string
+): string;
 
 export { ratioNames };
 export default modularScale;
@@ -319,7 +322,7 @@ export default rem;
 `;
 
 exports[`./helpers/stripUnit.js.flow 1`] = `
-"declare function stripUnit(value: string): number | string
+"declare function stripUnit(value: string): number | string;
 
 export default stripUnit;
 "
@@ -441,21 +444,21 @@ export { wordWrap };
 `;
 
 exports[`./mixins/clearFix.js.flow 1`] = `
-"declare function clearFix(parent?: string): Object
+"declare function clearFix(parent?: string): Object;
 
 export default clearFix;
 "
 `;
 
 exports[`./mixins/ellipsis.js.flow 1`] = `
-"declare function ellipsis(width?: string): Object
+"declare function ellipsis(width?: string): Object;
 
 export default ellipsis;
 "
 `;
 
 exports[`./mixins/fontFace.js.flow 1`] = `
-"interface FontFaceConfiguration {
+"declare interface FontFaceConfiguration {
   fontFamily: string;
   fontFilePath: string;
   fontStretch: string;
@@ -477,14 +480,14 @@ declare function fontFace({
   fileFormats,
   localFonts,
   unicodeRange,
-}: FontFaceConfiguration): Object
+}: FontFaceConfiguration): Object;
 
 export default fontFace;
 "
 `;
 
 exports[`./mixins/hiDPI.js.flow 1`] = `
-"declare function hiDPI(ratio?: number): string
+"declare function hiDPI(ratio?: number): string;
 
 export default hiDPI;
 "
@@ -493,30 +496,30 @@ export default hiDPI;
 exports[`./mixins/hideText.js.flow 1`] = `
 "declare function hideText(): {
   'text-indent': string;
-  'overflow': string;
+  overflow: string;
   'white-space': string;
-}
+};
 
 export default hideText;
 "
 `;
 
 exports[`./mixins/normalize.js.flow 1`] = `
-"declare function normalize(excludeOpinionated?: boolean): Object
+"declare function normalize(excludeOpinionated?: boolean): Object;
 
 export default normalize;
 "
 `;
 
 exports[`./mixins/placeholder.js.flow 1`] = `
-"declare function placeholder(styles: Object, parent?: string): Object
+"declare function placeholder(styles: Object, parent?: string): Object;
 
 export default placeholder;
 "
 `;
 
 exports[`./mixins/radialGradient.js.flow 1`] = `
-"interface RadialGradientConfiguration {
+"declare interface RadialGradientConfiguration {
   colorStops: Array<string>;
   extent: string;
   fallback: string;
@@ -530,7 +533,7 @@ declare function radialGradient({
   fallback,
   position,
   shape,
-}: RadialGradientConfiguration): Object
+}: RadialGradientConfiguration): Object;
 
 export default radialGradient;
 "
@@ -543,14 +546,14 @@ exports[`./mixins/retinaImage.js.flow 1`] = `
   extension?: string,
   retinaFilename?: string,
   retinaSuffix?: string,
-): Object
+): Object;
 
 export default retinaImage;
 "
 `;
 
 exports[`./mixins/selection.js.flow 1`] = `
-"declare function selection(styles: Object, parent?: string): Object
+"declare function selection(styles: Object, parent?: string): Object;
 
 export default selection;
 "
@@ -582,7 +585,7 @@ exports[`./mixins/timingFunctions.js.flow 1`] = `
   | 'easeInOutQuart'
   | 'easeInOutQuint'
   | 'easeInOutSine';
-declare function timingFunctions(timingFunction: TimingFunction): string
+declare function timingFunctions(timingFunction: TimingFunction): string;
 
 export default timingFunctions;
 "
@@ -590,7 +593,7 @@ export default timingFunctions;
 
 exports[`./mixins/triangle.js.flow 1`] = `
 "export type PointingDirection = 'top' | 'right' | 'bottom' | 'left';
-interface TriangleArgs {
+declare interface TriangleArgs {
   backgroundColor: string;
   foregroundColor: string;
   height: number | string;
@@ -604,7 +607,7 @@ declare function triangle({
   width,
   foregroundColor,
   backgroundColor,
-}: TriangleArgs): Object
+}: TriangleArgs): Object;
 
 export default triangle;
 "
@@ -617,7 +620,7 @@ exports[`./mixins/wordWrap.js.flow 1`] = `
   'overflow-wrap': string;
   'word-wrap': string;
   'word-break': string;
-}
+};
 
 export default wordWrap;
 "
@@ -629,7 +632,7 @@ declare function animation(
   ...args: Array<Array<AnimationProperty> | AnimationProperty>
 ): {
   animation: string;
-}
+};
 
 export default animation;
 "
@@ -640,7 +643,7 @@ exports[`./shorthands/backgroundImages.js.flow 1`] = `
   ...properties: Array<string>
 ): {
   'background-image': string;
-}
+};
 
 export default backgroundImages;
 "
@@ -651,35 +654,35 @@ exports[`./shorthands/backgrounds.js.flow 1`] = `
   ...properties: Array<string>
 ): {
   background: string;
-}
+};
 
 export default backgrounds;
 "
 `;
 
 exports[`./shorthands/borderColor.js.flow 1`] = `
-"declare function borderColor(...values: Array<null | void | string>): Object
+"declare function borderColor(...values: Array<null | void | string>): Object;
 
 export default borderColor;
 "
 `;
 
 exports[`./shorthands/borderRadius.js.flow 1`] = `
-"declare function borderRadius(side: string, radius: string): Object
+"declare function borderRadius(side: string, radius: string): Object;
 
 export default borderRadius;
 "
 `;
 
 exports[`./shorthands/borderStyle.js.flow 1`] = `
-"declare function borderStyle(...values: Array<null | void | string>): Object
+"declare function borderStyle(...values: Array<null | void | string>): Object;
 
 export default borderStyle;
 "
 `;
 
 exports[`./shorthands/borderWidth.js.flow 1`] = `
-"declare function borderWidth(...values: Array<null | void | string>): Object
+"declare function borderWidth(...values: Array<null | void | string>): Object;
 
 export default borderWidth;
 "
@@ -687,21 +690,21 @@ export default borderWidth;
 
 exports[`./shorthands/buttons.js.flow 1`] = `
 "export type ButtonState = void | null | 'active' | 'focus' | 'hover';
-declare function buttons(...states: Array<ButtonState>): Object
+declare function buttons(...states: Array<ButtonState>): Object;
 
 export default buttons;
 "
 `;
 
 exports[`./shorthands/margin.js.flow 1`] = `
-"declare function margin(...values: Array<null | void | string>): Object
+"declare function margin(...values: Array<null | void | string>): Object;
 
 export default margin;
 "
 `;
 
 exports[`./shorthands/padding.js.flow 1`] = `
-"declare function padding(...values: Array<null | void | string>): Object
+"declare function padding(...values: Array<null | void | string>): Object;
 
 export default padding;
 "
@@ -711,7 +714,7 @@ exports[`./shorthands/position.js.flow 1`] = `
 "declare function position(
   positionKeyword: string | null,
   ...values: Array<null | void | string>
-): Object
+): Object;
 
 export default position;
 "
@@ -724,7 +727,7 @@ exports[`./shorthands/size.js.flow 1`] = `
 ): {
   height: string;
   width: string;
-}
+};
 
 export default size;
 "
@@ -732,7 +735,7 @@ export default size;
 
 exports[`./shorthands/textInputs.js.flow 1`] = `
 "export type InputState = void | null | 'active' | 'focus' | 'hover';
-declare function textInputs(...states: Array<InputState>): string
+declare function textInputs(...states: Array<InputState>): string;
 
 export default textInputs;
 "
@@ -743,30 +746,30 @@ exports[`./shorthands/transitions.js.flow 1`] = `
   ...properties: Array<string>
 ): {
   transition: string;
-}
+};
 
 export default transitions;
 "
 `;
 
 exports[`./types/color.js.flow 1`] = `
-"interface HslColor {
+"declare interface HslColor {
   hue: number;
   saturation: number;
   lightness: number;
 }
-interface HslaColor {
+declare interface HslaColor {
   hue: number;
   saturation: number;
   lightness: number;
   alpha: number;
 }
-interface RgbColor {
+declare interface RgbColor {
   red: number;
   green: number;
   blue: number;
 }
-interface RgbaColor {
+declare interface RgbaColor {
   red: number;
   green: number;
   blue: number;

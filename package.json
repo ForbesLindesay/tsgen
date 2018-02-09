@@ -40,15 +40,15 @@
   "scripts": {
     "precommit": "lint-staged",
     "prepublish": "npm run build",
-    "prettier": "prettier --parser typescript --single-quote --trailing-comma all --no-bracket-spacing --write \"src/**/*.js\"",
-    "prettier:check": "prettier --parser typescript --single-quote --trailing-comma all --no-bracket-spacing --list-different \"src/**/*.js\"",
+    "prettier": "prettier --write \"src/**/*.ts\"",
+    "prettier:check": "prettier --list-different \"src/**/*.ts\"",
     "build": "tsc",
     "test": "jest ./src --coverage",
     "watch": "jest ./src --watch"
   },
   "lint-staged": {
-    "*.js": [
-      "prettier --parser typescript --single-quote --trailing-comma all --no-bracket-spacing --write",
+    "*.ts": [
+      "prettier --write",
       "git add"
     ]
   },
