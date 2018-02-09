@@ -460,14 +460,14 @@ export default ellipsis;
 exports[`./mixins/fontFace.js.flow 1`] = `
 "declare interface FontFaceConfiguration {
   fontFamily: string;
-  fontFilePath: string;
-  fontStretch: string;
-  fontStyle: string;
-  fontVariant: string;
-  fontWeight: string;
-  fileFormats: Array<string>;
-  localFonts: Array<string>;
-  unicodeRange: string;
+  fontFilePath?: string;
+  fontStretch?: string;
+  fontStyle?: string;
+  fontVariant?: string;
+  fontWeight?: string;
+  fileFormats?: Array<string>;
+  localFonts?: Array<string>;
+  unicodeRange?: string;
 }
 export { FontFaceConfiguration };
 declare function fontFace({
@@ -521,10 +521,10 @@ export default placeholder;
 exports[`./mixins/radialGradient.js.flow 1`] = `
 "declare interface RadialGradientConfiguration {
   colorStops: Array<string>;
-  extent: string;
-  fallback: string;
-  position: string;
-  shape: string;
+  extent?: string;
+  fallback?: string;
+  position?: string;
+  shape?: string;
 }
 export { RadialGradientConfiguration };
 declare function radialGradient({
@@ -594,7 +594,7 @@ export default timingFunctions;
 exports[`./mixins/triangle.js.flow 1`] = `
 "export type PointingDirection = 'top' | 'right' | 'bottom' | 'left';
 declare interface TriangleArgs {
-  backgroundColor: string;
+  backgroundColor?: string;
   foregroundColor: string;
   height: number | string;
   width: number | string;

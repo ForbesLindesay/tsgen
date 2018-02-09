@@ -1,0 +1,8 @@
+// @flow
+type Optional = {
+  foo?: string;
+}
+
+const a: Optional = { foo: 'a' };
+
+export default a;

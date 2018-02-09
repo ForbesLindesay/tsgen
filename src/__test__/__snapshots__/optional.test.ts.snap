@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`./optional.js.flow 1`] = `
+"declare interface Optional {
+  foo?: string;
+}
+export { Optional };
+declare const a: Optional;
+
+export default a;
+"
+`;
