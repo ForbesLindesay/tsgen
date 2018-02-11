@@ -4,6 +4,7 @@ import Context, {
   SingleImportDeclaration,
   SingleVariableDeclaration,
 } from '../Context';
+import printAnyTypeAnnotation from './AnyTypeAnnotation';
 import printBooleanTypeAnnotation from './BooleanTypeAnnotation';
 import printCallExpression from './CallExpression';
 import printDeclareFunction from './DeclareFunction';
@@ -33,9 +34,12 @@ import printTypeAnnotation from './TypeAnnotation';
 import printTypeParameterInstantiation from './TypeParameterInstantiation';
 import printTypeofTypeAnnotation from './TypeofTypeAnnotation';
 import printUnionTypeAnnotation from './UnionTypeAnnotation';
+import printVoidTypeAnnotation from './VoidTypeAnnotation';
 
 export default function print(node: bt.Node, ctx: Context): string {
   switch (node.type) {
+    case 'AnyTypeAnnotation':
+      return printAnyTypeAnnotation(node as bt.AnyTypeAnnotation, ctx);
     case 'BooleanTypeAnnotation':
       return printBooleanTypeAnnotation(node as bt.BooleanTypeAnnotation, ctx);
     case 'CallExpression':
@@ -115,6 +119,8 @@ export default function print(node: bt.Node, ctx: Context): string {
       return printTypeofTypeAnnotation(node as bt.TypeofTypeAnnotation, ctx);
     case 'UnionTypeAnnotation':
       return printUnionTypeAnnotation(node as bt.UnionTypeAnnotation, ctx);
+    case 'VoidTypeAnnotation':
+      return printVoidTypeAnnotation(node as bt.VoidTypeAnnotation, ctx);
     default:
       writeFileSync(
         __dirname + '/' + node.type + '.ts',
@@ -131,6 +137,6 @@ export default function print(node: bt.Node, ctx: Context): string {
           "', node);\n" +
           '}\n',
       );
-      throw ctx.getError('Unsupported node type', <bt.Node>node);
+      throw ctx.getError('Unsupported node type ' + node.type, <bt.Node>node);
   }
 }

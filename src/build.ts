@@ -52,7 +52,7 @@ ${builders
         "  throw ctx.getError('Unsupported type " + node.type + "', node);\\n" +
         "}\\n",
       );
-      throw ctx.getError('Unsupported node type', node);
+      throw ctx.getError('Unsupported node type ' + node.type, node);
   }
 }
 `,
@@ -94,7 +94,7 @@ ${printers
         "  throw ctx.getError('Unsupported type " + node.type + "', node);\\n" +
         "}\\n",
       );
-      throw ctx.getError('Unsupported node type', <bt.Node>node);
+      throw ctx.getError('Unsupported node type ' + node.type, <bt.Node>node);
   }
 }
 `,

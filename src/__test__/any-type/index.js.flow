@@ -1,0 +1,3 @@
+// @flow
+export default function forceType(value: any, type: string): void {
+}
