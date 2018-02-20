@@ -1,0 +1,1402 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`./Argv.js.flow 1`] = `
+"declare interface Argv {
+  _: Array<string>;
+  $0: string;
+  all: boolean;
+  automock: boolean;
+  bail: boolean;
+  browser: boolean;
+  cache: boolean;
+  cacheDirectory: string;
+  changedFilesWithAncestor: boolean;
+  changedSince: string;
+  clearMocks: boolean;
+  ci: boolean;
+  collectCoverage: boolean;
+  collectCoverageFrom: Array<string>;
+  collectCoverageOnlyFrom: Array<string>;
+  config: string;
+  coverage: boolean;
+  coverageDirectory: string;
+  coveragePathIgnorePatterns: Array<string>;
+  coverageReporters: Array<string>;
+  coverageThreshold: string;
+  env: string;
+  expand: boolean;
+  findRelatedTests: boolean;
+  forceExit: boolean;
+  globalSetup: null | void | string;
+  globalTeardown: null | void | string;
+  globals: string;
+  h: boolean;
+  haste: string;
+  help: boolean;
+  json: boolean;
+  lastCommit: boolean;
+  logHeapUsage: boolean;
+  moduleDirectories: Array<string>;
+  moduleFileExtensions: Array<string>;
+  moduleLoader: string;
+  moduleNameMapper: string;
+  modulePathIgnorePatterns: Array<string>;
+  modulePaths: Array<string>;
+  name: string;
+  noSCM: boolean;
+  noStackTrace: boolean;
+  notify: boolean;
+  notifyMode: string;
+  onlyChanged: boolean;
+  outputFile: string;
+  preset: null | void | string;
+  replname: null | void | string;
+  resetMocks: boolean;
+  resetModules: boolean;
+  resolver: null | void | string;
+  restoreMocks: boolean;
+  rootDir: string;
+  roots: Array<string>;
+  setupFiles: Array<string>;
+  setupTestFrameworkScriptFile: string;
+  silent: boolean;
+  snapshotSerializers: Array<string>;
+  testEnvironment: string;
+  testFailureExitCode: null | void | string;
+  testMatch: Array<string>;
+  testNamePattern: string;
+  testPathIgnorePatterns: Array<string>;
+  testPathPattern: Array<string>;
+  testRegex: string;
+  testResultsProcessor: null | void | string;
+  testRunner: string;
+  testURL: string;
+  timers: 'real' | 'fake';
+  transform: string;
+  transformIgnorePatterns: Array<string>;
+  watchPathIgnorePatterns: Array<string>;
+  unmockedModulePathPatterns: null | void | Array<string>;
+  updateSnapshot: boolean;
+  useStderr: boolean;
+  verbose: null | void | boolean;
+  watch: boolean;
+  watchAll: boolean;
+  watchman: boolean;
+}
+
+export { Argv };
+"
+`;
+
+exports[`./ChangedFiles.js.flow 1`] = `
+"import { Path } from 'types/Config';
+
+declare interface Options {
+  lastCommit?: boolean;
+  withAncestor?: boolean;
+  changedSince?: string;
+}
+type ChangedFiles = Set<Path>;
+declare interface Repos {
+  git: Set<Path>;
+  hg: Set<Path>;
+}
+type ChangedFilesPromise = Promise<{
+  repos: Repos;
+  changedFiles: ChangedFiles;
+}>;
+declare interface SCMAdapter {
+  findChangedFiles: (cwd: Path, options: Options) => Promise<Array<Path>>;
+  getRoot: (cwd: Path) => Promise<null | void | Path>;
+}
+
+export { Options };
+export { ChangedFiles };
+export { Repos };
+export { ChangedFilesPromise };
+export { SCMAdapter };
+"
+`;
+
+exports[`./Circus.js.flow 1`] = `
+"type DoneFn = (reason?: string | Error) => void;
+type BlockFn = () => void;
+type BlockName = string | Function;
+type BlockMode = void | 'skip' | 'only';
+type TestMode = BlockMode;
+type TestName = string;
+type TestFn = (done?: DoneFn) => null | void | Promise<any>;
+type HookFn = (done?: DoneFn) => null | void | Promise<any>;
+type AsyncFn = TestFn | HookFn;
+type SharedHookType = 'afterAll' | 'beforeAll';
+type HookType = SharedHookType | 'afterEach' | 'beforeEach';
+declare interface Hook {
+  fn: HookFn;
+  type: HookType;
+}
+type TestContext = Object;
+type Exception = any;
+type FormattedError = string;
+declare interface DescribeBlock {
+  children: Array<DescribeBlock>;
+  hooks: Array<Hook>;
+  mode: BlockMode;
+  name: BlockName;
+  parent: null | void | DescribeBlock;
+  tests: Array<TestEntry>;
+}
+type TestStatus = 'pass' | 'fail' | 'skip';
+declare interface TestEntry {
+  errors: Array<Exception>;
+  fn: null | void | TestFn;
+  mode: TestMode;
+  name: TestName;
+  parent: DescribeBlock;
+  startedAt: null | void | number;
+  duration: null | void | number;
+  status: null | void | TestStatus;
+}
+type Event =
+  | {
+      mode: BlockMode;
+      name: 'start_describe_definition';
+      blockName: BlockName;
+    }
+  | {
+      name: 'finish_describe_definition';
+    }
+  | {
+      name: 'add_hook';
+      hookType: HookType;
+      fn: HookFn;
+    }
+  | {
+      name: 'add_test';
+      testName: TestName;
+      fn?: TestFn;
+      mode?: TestMode;
+    }
+  | {
+      name: 'hook_start';
+      hook: Hook;
+    }
+  | {
+      name: 'hook_success';
+      hook: Hook;
+    }
+  | {
+      name: 'hook_failure';
+      error: string | Exception;
+      hook: Hook;
+    }
+  | {
+      name: 'test_start';
+      test: TestEntry;
+    }
+  | {
+      name: 'test_success';
+      test: TestEntry;
+    }
+  | {
+      name: 'test_failure';
+      error: Exception;
+      test: TestEntry;
+    }
+  | {
+      name: 'test_skip';
+      test: TestEntry;
+    }
+  | {
+      name: 'run_describe_start';
+      describeBlock: DescribeBlock;
+    }
+  | {
+      name: 'run_describe_finish';
+      describeBlock: DescribeBlock;
+    }
+  | {
+      name: 'run_start';
+    }
+  | {
+      name: 'run_finish';
+    };
+declare interface State {
+  currentDescribeBlock: DescribeBlock;
+  hasFocusedTests: boolean;
+  rootDescribeBlock: DescribeBlock;
+  testTimeout: number;
+  expand?: boolean;
+}
+type EventHandler = (event: Event, state: State) => void;
+declare interface TestResult {
+  duration: null | void | number;
+  errors: Array<FormattedError>;
+  status: TestStatus;
+  testPath: Array<TestName>;
+}
+type TestResults = Array<TestResult>;
+
+export { DoneFn };
+export { BlockFn };
+export { BlockName };
+export { BlockMode };
+export { TestMode };
+export { TestName };
+export { TestFn };
+export { HookFn };
+export { AsyncFn };
+export { SharedHookType };
+export { HookType };
+export { Hook };
+export { TestContext };
+export { Exception };
+export { FormattedError };
+export { EventHandler };
+export { Event };
+export { TestStatus };
+export { TestResult };
+export { TestResults };
+export { State };
+export { DescribeBlock };
+export { TestEntry };
+"
+`;
+
+exports[`./Config.js.flow 1`] = `
+"type Path = string;
+type Glob = string;
+declare interface HasteConfig {
+  defaultPlatform?: null | void | string;
+  hasteImplModulePath?: string;
+  platforms?: Array<string>;
+  providesModuleNodeModules: Array<string>;
+}
+type ReporterConfig = [string, Object];
+type ConfigGlobals = Object;
+declare interface DefaultOptions {
+  automock: boolean;
+  bail: boolean;
+  browser: boolean;
+  cache: boolean;
+  cacheDirectory: Path;
+  changedFilesWithAncestor: boolean;
+  clearMocks: boolean;
+  coveragePathIgnorePatterns: Array<string>;
+  coverageReporters: Array<string>;
+  expand: boolean;
+  forceCoverageMatch: Array<Glob>;
+  globals: ConfigGlobals;
+  globalSetup: null | void | string;
+  globalTeardown: null | void | string;
+  haste: HasteConfig;
+  detectLeaks: boolean;
+  moduleDirectories: Array<string>;
+  moduleFileExtensions: Array<string>;
+  moduleNameMapper: {
+    [key: string]: string;
+  };
+  modulePathIgnorePatterns: Array<string>;
+  noStackTrace: boolean;
+  notify: boolean;
+  notifyMode: string;
+  preset: null | void | string;
+  resetMocks: boolean;
+  resetModules: boolean;
+  restoreMocks: boolean;
+  runner: string;
+  runTestsByPath: boolean;
+  snapshotSerializers: Array<Path>;
+  testEnvironment: string;
+  testEnvironmentOptions: Object;
+  testFailureExitCode: string | number;
+  testLocationInResults: boolean;
+  testMatch: Array<Glob>;
+  testPathIgnorePatterns: Array<string>;
+  testRegex: string;
+  testResultsProcessor: null | void | string;
+  testURL: string;
+  timers: 'real' | 'fake';
+  transformIgnorePatterns: Array<Glob>;
+  watchPathIgnorePatterns: Array<string>;
+  useStderr: boolean;
+  verbose: null | void | boolean;
+  watch: boolean;
+  watchman: boolean;
+}
+declare interface InitialOptions {
+  automock?: boolean;
+  bail?: boolean;
+  browser?: boolean;
+  cache?: boolean;
+  cacheDirectory?: Path;
+  clearMocks?: boolean;
+  changedFilesWithAncestor?: boolean;
+  changedSince?: string;
+  collectCoverage?: boolean;
+  collectCoverageFrom?: Array<Glob>;
+  collectCoverageOnlyFrom?: {
+    [key: string]: boolean;
+  };
+  coverageDirectory?: string;
+  coveragePathIgnorePatterns?: Array<string>;
+  coverageReporters?: Array<string>;
+  coverageThreshold?: {
+    global: {
+      [key: string]: number;
+    };
+  };
+  detectLeaks?: boolean;
+  displayName?: string;
+  expand?: boolean;
+  findRelatedTests?: boolean;
+  forceCoverageMatch?: Array<Glob>;
+  forceExit?: boolean;
+  json?: boolean;
+  globals?: ConfigGlobals;
+  globalSetup?: null | void | string;
+  globalTeardown?: null | void | string;
+  haste?: HasteConfig;
+  reporters?: Array<ReporterConfig | string>;
+  logHeapUsage?: boolean;
+  lastCommit?: boolean;
+  listTests?: boolean;
+  mapCoverage?: boolean;
+  moduleDirectories?: Array<string>;
+  moduleFileExtensions?: Array<string>;
+  moduleLoader?: Path;
+  moduleNameMapper?: {
+    [key: string]: string;
+  };
+  modulePathIgnorePatterns?: Array<string>;
+  modulePaths?: Array<string>;
+  name?: string;
+  noStackTrace?: boolean;
+  notify?: boolean;
+  notifyMode?: string;
+  onlyChanged?: boolean;
+  outputFile?: Path;
+  passWithNoTests?: boolean;
+  preprocessorIgnorePatterns?: Array<Glob>;
+  preset?: null | void | string;
+  projects?: Array<Glob>;
+  replname?: null | void | string;
+  resetMocks?: boolean;
+  resetModules?: boolean;
+  resolver?: null | void | Path;
+  restoreMocks?: boolean;
+  rootDir: Path;
+  roots?: Array<Path>;
+  runner?: string;
+  runTestsByPath?: boolean;
+  scriptPreprocessor?: string;
+  setupFiles?: Array<Path>;
+  setupTestFrameworkScriptFile?: Path;
+  silent?: boolean;
+  skipNodeResolution?: boolean;
+  snapshotSerializers?: Array<Path>;
+  testEnvironment?: string;
+  testEnvironmentOptions?: Object;
+  testFailureExitCode?: string | number;
+  testLocationInResults?: boolean;
+  testMatch?: Array<Glob>;
+  testNamePattern?: string;
+  testPathDirs?: Array<Path>;
+  testPathIgnorePatterns?: Array<string>;
+  testRegex?: string;
+  testResultsProcessor?: null | void | string;
+  testRunner?: string;
+  testURL?: string;
+  timers?: 'real' | 'fake';
+  transform?: {
+    [key: string]: string;
+  };
+  transformIgnorePatterns?: Array<Glob>;
+  watchPathIgnorePatterns?: Array<string>;
+  unmockedModulePathPatterns?: Array<string>;
+  updateSnapshot?: boolean;
+  useStderr?: boolean;
+  verbose?: null | void | boolean;
+  watch?: boolean;
+  watchAll?: boolean;
+  watchman?: boolean;
+  watchPlugins?: Array<string>;
+}
+type SnapshotUpdateState = 'all' | 'new' | 'none';
+declare interface GlobalConfig {
+  bail: boolean;
+  changedSince: string;
+  changedFilesWithAncestor: boolean;
+  collectCoverage: boolean;
+  collectCoverageFrom: Array<Glob>;
+  collectCoverageOnlyFrom: null | void | {
+    [key: string]: boolean;
+  };
+  coverageDirectory: string;
+  coverageReporters: Array<string>;
+  coverageThreshold: {
+    global: {
+      [key: string]: number;
+    };
+  };
+  detectLeaks: boolean;
+  enabledTestsMap: null | void | {
+    [key: string]: {
+      [key: string]: boolean;
+    };
+  };
+  expand: boolean;
+  findRelatedTests: boolean;
+  forceExit: boolean;
+  json: boolean;
+  globalSetup: null | void | string;
+  globalTeardown: null | void | string;
+  lastCommit: boolean;
+  logHeapUsage: boolean;
+  listTests: boolean;
+  maxWorkers: number;
+  noStackTrace: boolean;
+  nonFlagArgs: Array<string>;
+  noSCM: null | void | boolean;
+  notify: boolean;
+  notifyMode: string;
+  outputFile: null | void | Path;
+  onlyChanged: boolean;
+  onlyFailures: boolean;
+  passWithNoTests: boolean;
+  projects: Array<Glob>;
+  replname: null | void | string;
+  reporters: Array<ReporterConfig>;
+  runTestsByPath: boolean;
+  rootDir: Path;
+  silent: boolean;
+  testFailureExitCode: number;
+  testNamePattern: string;
+  testPathPattern: string;
+  testResultsProcessor: null | void | string;
+  updateSnapshot: SnapshotUpdateState;
+  useStderr: boolean;
+  verbose: null | void | boolean;
+  watch: boolean;
+  watchAll: boolean;
+  watchman: boolean;
+  watchPlugins: null | void | Array<string>;
+}
+declare interface ProjectConfig {
+  automock: boolean;
+  browser: boolean;
+  cache: boolean;
+  cacheDirectory: Path;
+  clearMocks: boolean;
+  coveragePathIgnorePatterns: Array<string>;
+  cwd: Path;
+  detectLeaks: boolean;
+  displayName: null | void | string;
+  forceCoverageMatch: Array<Glob>;
+  globals: ConfigGlobals;
+  haste: HasteConfig;
+  moduleDirectories: Array<string>;
+  moduleFileExtensions: Array<string>;
+  moduleLoader: Path;
+  moduleNameMapper: Array<[string, string]>;
+  modulePathIgnorePatterns: Array<string>;
+  modulePaths: Array<string>;
+  name: string;
+  resetMocks: boolean;
+  resetModules: boolean;
+  resolver: null | void | Path;
+  restoreMocks: boolean;
+  rootDir: Path;
+  roots: Array<Path>;
+  runner: string;
+  setupFiles: Array<Path>;
+  setupTestFrameworkScriptFile: null | void | Path;
+  skipNodeResolution: boolean;
+  snapshotSerializers: Array<Path>;
+  testEnvironment: string;
+  testEnvironmentOptions: Object;
+  testMatch: Array<Glob>;
+  testLocationInResults: boolean;
+  testPathIgnorePatterns: Array<string>;
+  testRegex: string;
+  testRunner: string;
+  testURL: string;
+  timers: 'real' | 'fake';
+  transform: Array<[string, Path]>;
+  transformIgnorePatterns: Array<Glob>;
+  watchPathIgnorePatterns: Array<string>;
+  unmockedModulePathPatterns: null | void | Array<string>;
+}
+
+export { Path };
+export { Glob };
+export { HasteConfig };
+export { ReporterConfig };
+export { ConfigGlobals };
+export { DefaultOptions };
+export { InitialOptions };
+export { SnapshotUpdateState };
+export { GlobalConfig };
+export { ProjectConfig };
+"
+`;
+
+exports[`./Console.js.flow 1`] = `
+"type LogMessage = string;
+type LogType =
+  | 'assert'
+  | 'count'
+  | 'debug'
+  | 'dir'
+  | 'dirxml'
+  | 'error'
+  | 'group'
+  | 'groupCollapsed'
+  | 'info'
+  | 'log'
+  | 'time'
+  | 'warn';
+declare interface LogEntry {
+  message: LogMessage;
+  origin: string;
+  type: LogType;
+}
+declare interface LogCounters {
+  [label: string]: number;
+}
+declare interface LogTimers {
+  [label: string]: Date;
+}
+type ConsoleBuffer = Array<LogEntry>;
+
+export { LogMessage };
+export { LogEntry };
+export { LogCounters };
+export { LogTimers };
+export { LogType };
+export { ConsoleBuffer };
+"
+`;
+
+exports[`./Context.js.flow 1`] = `
+"import { ProjectConfig } from './Config';
+import { HasteFS } from './HasteMap';
+import { ModuleMap } from './HasteMap';
+import HasteResolver from 'jest-resolve';
+
+declare interface Context {
+  config: ProjectConfig;
+  hasteFS: HasteFS;
+  moduleMap: ModuleMap;
+  resolver: HasteResolver;
+}
+
+export { Context };
+"
+`;
+
+exports[`./Environment.js.flow 1`] = `
+"import { ProjectConfig } from './Config';
+import { Script } from 'vm';
+import { Global } from './Global';
+import { ModuleMocker } from 'jest-mock';
+
+declare interface EnvironmentOptions {
+  console?: Object;
+}
+declare class $JestEnvironment {
+  constructor(config: ProjectConfig, options?: EnvironmentOptions);
+  runScript: (script: Script) => any;
+  global: Global;
+  fakeTimers: {
+    clearAllTimers: () => void;
+    runAllImmediates: () => void;
+    runAllTicks: () => void;
+    runAllTimers: () => void;
+    advanceTimersByTime: (msToRun: number) => void;
+    runOnlyPendingTimers: () => void;
+    runWithRealTimers: (callback: any) => void;
+    useFakeTimers: () => void;
+    useRealTimers: () => void;
+  };
+  testFilePath: string;
+  moduleMocker: ModuleMocker;
+  setup: () => Promise<void>;
+  teardown: () => Promise<void>;
+}
+type Environment = $JestEnvironment;
+type EnvironmentClass = typeof $JestEnvironment;
+
+export { EnvironmentOptions };
+export { Environment };
+export { EnvironmentClass };
+"
+`;
+
+exports[`./Global.js.flow 1`] = `
+"type Global = Object;
+
+export { Global };
+"
+`;
+
+exports[`./HasteMap.js.flow 1`] = `
+"import { FS } from 'jest-haste-map';
+import { ModuleMap as _ModuleMap } from 'jest-haste-map';
+import { Path } from 'types/Config';
+
+type HasteFS = FS;
+type ModuleMap = _ModuleMap;
+type FileMetaData = [string, number, 0 | 1, Array<string>];
+declare interface FileData {
+  __proto__: null;
+  [filepath: Path]: FileMetaData;
+}
+declare interface MockData {
+  __proto__: null;
+  [id: string]: Path;
+}
+type ModuleMetaData = [Path, number];
+declare interface ModuleMapItem {
+  [platform: string]: ModuleMetaData;
+}
+export { ModuleMapItem };
+declare interface ModuleMapData {
+  __proto__: null;
+  [id: string]: ModuleMapItem;
+}
+declare interface WatchmanClocks {
+  __proto__: null;
+  [filepath: Path]: string;
+}
+type HasteRegExp = RegExp | ((str: string) => boolean);
+declare interface DuplicatesSet {
+  __proto__: null;
+  [filePath: string]: number;
+}
+declare interface DuplicatesIndex {
+  [id: string]: {
+    __proto__: null;
+    [platform: string]: DuplicatesSet;
+  };
+}
+declare interface InternalHasteMap {
+  clocks: WatchmanClocks;
+  duplicates: DuplicatesIndex;
+  files: FileData;
+  map: ModuleMapData;
+  mocks: MockData;
+}
+declare interface HasteMap {
+  hasteFS: HasteFS;
+  moduleMap: ModuleMap;
+  __hasteMapForTest?: null | void | InternalHasteMap;
+}
+declare interface RawModuleMap {
+  duplicates: DuplicatesIndex;
+  map: ModuleMapData;
+  mocks: MockData;
+}
+declare interface HType {
+  ID: 0;
+  MTIME: 1;
+  VISITED: 2;
+  DEPENDENCIES: 3;
+  PATH: 0;
+  TYPE: 1;
+  MODULE: 0;
+  PACKAGE: 1;
+  GENERIC_PLATFORM: 'g';
+  NATIVE_PLATFORM: 'native';
+}
+type HTypeValue = 0 | 1 | 2 | 3 | 'g';
+
+export { HasteFS };
+export { ModuleMap };
+export { FileData };
+export { MockData };
+export { ModuleMapData };
+export { WatchmanClocks };
+export { HasteRegExp };
+export { DuplicatesSet };
+export { DuplicatesIndex };
+export { InternalHasteMap };
+export { HasteMap };
+export { RawModuleMap };
+export { FileMetaData };
+export { ModuleMetaData };
+export { HType };
+export { HTypeValue };
+"
+`;
+
+exports[`./Jasmine.js.flow 1`] = `
+"type Jasmine = Object;
+
+export { Jasmine };
+"
+`;
+
+exports[`./Jest.js.flow 1`] = `
+"type LocalModuleRequire = (moduleName: string) => any;
+export type JestMockFn = Function;
+export type GenMockFn = (implementation?: Function) => JestMockFn;
+declare interface Jest {
+  addMatchers: (matchers: Object) => void;
+  autoMockOff: () => Jest;
+  autoMockOn: () => Jest;
+  clearAllMocks: () => Jest;
+  clearAllTimers: () => void;
+  deepUnmock: (moduleName: string) => Jest;
+  disableAutomock: () => Jest;
+  doMock: (moduleName: string, moduleFactory?: any) => Jest;
+  dontMock: (moduleName: string) => Jest;
+  enableAutomock: () => Jest;
+  fn: GenMockFn;
+  genMockFn: GenMockFn;
+  genMockFromModule: (moduleName: string) => any;
+  genMockFunction: GenMockFn;
+  isMockFunction: (fn: Function) => boolean;
+  mock: (moduleName: string, moduleFactory?: any, options?: Object) => Jest;
+  requireActual: LocalModuleRequire;
+  requireMock: LocalModuleRequire;
+  resetAllMocks: () => Jest;
+  resetModuleRegistry: () => Jest;
+  resetModules: () => Jest;
+  restoreAllMocks: () => Jest;
+  runAllImmediates: () => void;
+  runAllTicks: () => void;
+  runAllTimers: () => void;
+  runOnlyPendingTimers: () => void;
+  advanceTimersByTime: (msToRun: number) => void;
+  runTimersToTime: (msToRun: number) => void;
+  setMock: (moduleName: string, moduleExports: any) => Jest;
+  setTimeout: (timeout: number) => Jest;
+  spyOn: (
+    object: Object,
+    methodName: string,
+    accessType?: 'get' | 'set',
+  ) => JestMockFn;
+  unmock: (moduleName: string) => Jest;
+  useFakeTimers: () => Jest;
+  useRealTimers: () => Jest;
+}
+
+export { LocalModuleRequire };
+export { Jest };
+"
+`;
+
+exports[`./Matchers.js.flow 1`] = `
+"import { SnapshotState } from 'jest-snapshot';
+import { Path } from 'types/Config';
+
+declare interface ExpectationResult {
+  pass: boolean;
+  message: () => string;
+}
+type RawMatcherFn = (
+  expected: any,
+  actual: any,
+  options: any,
+) => ExpectationResult;
+type ThrowingMatcherFn = (actual: any) => void;
+type PromiseMatcherFn = (actual: any) => Promise<void>;
+declare interface MatcherState {
+  assertionCalls: number;
+  currentTestName?: string;
+  equals: (any: any, any: any) => boolean;
+  expand?: boolean;
+  expectedAssertionsNumber: null | void | number;
+  isExpectingAssertions: null | void | boolean;
+  isNot: boolean;
+  snapshotState: SnapshotState;
+  suppressedErrors: Array<Error>;
+  testPath?: Path;
+  utils: Object;
+}
+type AsymmetricMatcher = Object;
+declare interface MatchersObject {
+  [id: string]: RawMatcherFn;
+}
+declare interface ExpectationObject {
+  resolves: {
+    not: {
+      [id: string]: PromiseMatcherFn;
+    };
+    [id: string]: PromiseMatcherFn;
+  };
+  rejects: {
+    not: {
+      [id: string]: PromiseMatcherFn;
+    };
+    [id: string]: PromiseMatcherFn;
+  };
+  not: {
+    [id: string]: ThrowingMatcherFn;
+  };
+  [id: string]: ThrowingMatcherFn;
+}
+declare interface Expect {
+  addSnapshotSerializer: (any: any) => void;
+  assertions: (number: number) => void;
+  extend: (any: any) => void;
+  extractExpectedAssertionsErrors: () => Array<{
+    actual: string;
+    error: Error;
+    expected: string;
+  }>;
+  getState: () => MatcherState;
+  hasAssertions: () => void;
+  setState: (Object: Object) => void;
+  any: (expectedObject: any) => AsymmetricMatcher;
+  anything: () => AsymmetricMatcher;
+  arrayContaining: (sample: Array<any>) => AsymmetricMatcher;
+  objectContaining: (sample: Object) => AsymmetricMatcher;
+  stringContaining: (expected: string) => AsymmetricMatcher;
+  stringMatching: (expected: string | RegExp) => AsymmetricMatcher;
+
+  (expected: any): ExpectationObject;
+}
+
+export { ExpectationResult };
+export { RawMatcherFn };
+export { ThrowingMatcherFn };
+export { PromiseMatcherFn };
+export { MatcherState };
+export { AsymmetricMatcher };
+export { MatchersObject };
+export { Expect };
+export { ExpectationObject };
+"
+`;
+
+exports[`./Mock.js.flow 1`] = `
+"import { MockFunctionMetadata as _MockFunctionMetadata } from 'jest-mock';
+import { ModuleMocker as _ModuleMocker } from 'jest-mock';
+
+type MockFunctionMetadata = _MockFunctionMetadata;
+type ModuleMocker = _ModuleMocker;
+
+export { MockFunctionMetadata };
+export { ModuleMocker };
+"
+`;
+
+exports[`./PrettyFormat.js.flow 1`] = `
+"declare interface Colors {
+  comment: {
+    close: string;
+    open: string;
+  };
+  content: {
+    close: string;
+    open: string;
+  };
+  prop: {
+    close: string;
+    open: string;
+  };
+  tag: {
+    close: string;
+    open: string;
+  };
+  value: {
+    close: string;
+    open: string;
+  };
+}
+type Indent = (string: string) => string;
+type Refs = Array<any>;
+type Print = (any: any) => string;
+type StringOrNull = string | null;
+declare interface Theme {
+  comment: string;
+  content: string;
+  prop: string;
+  tag: string;
+  value: string;
+}
+declare interface ThemeReceived {
+  comment?: string;
+  content?: string;
+  prop?: string;
+  tag?: string;
+  value?: string;
+}
+declare interface Config {
+  callToJSON: boolean;
+  colors: Colors;
+  escapeRegex: boolean;
+  indent: string;
+  maxDepth: number;
+  min: boolean;
+  plugins: Plugins;
+  printFunctionName: boolean;
+  spacingInner: string;
+  spacingOuter: string;
+}
+type Printer = (
+  val: any,
+  config: Config,
+  indentation: string,
+  depth: number,
+  refs: Refs,
+  hasCalledToJSON?: boolean,
+) => string;
+type Test = (any: any) => boolean;
+declare interface NewPlugin {
+  serialize: (
+    val: any,
+    config: Config,
+    indentation: string,
+    depth: number,
+    refs: Refs,
+    printer: Printer,
+  ) => string;
+  test: Test;
+}
+declare interface PluginOptions {
+  edgeSpacing: string;
+  min: boolean;
+  spacing: string;
+}
+declare interface OldPlugin {
+  print: (
+    val: any,
+    print: Print,
+    indent: Indent,
+    options: PluginOptions,
+    colors: Colors,
+  ) => string;
+  test: Test;
+}
+type Plugin = NewPlugin | OldPlugin;
+type Plugins = Array<Plugin>;
+declare interface Options {
+  callToJSON: boolean;
+  escapeRegex: boolean;
+  highlight: boolean;
+  indent: number;
+  maxDepth: number;
+  min: boolean;
+  plugins: Plugins;
+  printFunctionName: boolean;
+  theme: Theme;
+}
+declare interface OptionsReceived {
+  callToJSON?: boolean;
+  escapeRegex?: boolean;
+  highlight?: boolean;
+  indent?: number;
+  maxDepth?: number;
+  min?: boolean;
+  plugins?: Plugins;
+  printFunctionName?: boolean;
+  theme?: ThemeReceived;
+}
+type ReactTestChild = ReactTestObject | string | number;
+declare interface ReactTestObject {
+  $$typeof: symbol;
+  type: string;
+  props?: Object;
+  children?: null | Array<ReactTestChild>;
+}
+
+export { Colors };
+export { Indent };
+export { Refs };
+export { Print };
+export { StringOrNull };
+export { Theme };
+export { ThemeReceived };
+export { Options };
+export { OptionsReceived };
+export { Config };
+export { Printer };
+export { Test };
+export { NewPlugin };
+export { PluginOptions };
+export { OldPlugin };
+export { Plugin };
+export { Plugins };
+export { ReactTestObject };
+export { ReactTestChild };
+"
+`;
+
+exports[`./Process.js.flow 1`] = `
+"import { WriteStream as tty$WriteStream } from 'tty';
+
+declare interface Process {
+  stdout: NodeJS.WritableStream | tty$WriteStream;
+  exit: (code?: number) => void;
+}
+
+export { Process };
+"
+`;
+
+exports[`./Reporters.js.flow 1`] = `
+"declare interface ReporterOnStartOptions {
+  estimatedTime: number;
+  showStatus: boolean;
+}
+
+export { ReporterOnStartOptions };
+"
+`;
+
+exports[`./Resolve.js.flow 1`] = `
+"import _Resolver from 'jest-resolve';
+
+declare interface ResolveModuleConfig {
+  skipNodeResolution?: boolean;
+}
+type Resolver = _Resolver;
+
+export { ResolveModuleConfig };
+export { Resolver };
+"
+`;
+
+exports[`./TestResult.js.flow 1`] = `
+"import { ConsoleBuffer } from './Console';
+
+declare interface RawFileCoverage {
+  path: string;
+  s: {
+    [statementId: number]: number;
+  };
+  b: {
+    [branchId: number]: number;
+  };
+  f: {
+    [functionId: number]: number;
+  };
+  l: {
+    [lineId: number]: number;
+  };
+  fnMap: {
+    [functionId: number]: any;
+  };
+  statementMap: {
+    [statementId: number]: any;
+  };
+  branchMap: {
+    [branchId: number]: any;
+  };
+  inputSourceMap?: Object;
+}
+declare interface RawCoverage {
+  [filePath: string]: RawFileCoverage;
+}
+declare interface FileCoverageTotal {
+  total: number;
+  covered: number;
+  skipped: number;
+  pct: number;
+}
+export { FileCoverageTotal };
+declare interface CoverageSummary {
+  lines: FileCoverageTotal;
+  statements: FileCoverageTotal;
+  branches: FileCoverageTotal;
+  functions: FileCoverageTotal;
+  merge: (other: CoverageSummary) => void;
+}
+declare interface FileCoverage {
+  getLineCoverage: () => Object;
+  getUncoveredLines: () => Array<number>;
+  getBranchCoverageByLine: () => Object;
+  toJSON: () => Object;
+  merge: (other: Object) => void;
+  computeSimpleTotals: (property: string) => FileCoverageTotal;
+  computeBranchTotals: () => FileCoverageTotal;
+  resetHits: () => void;
+  toSummary: () => CoverageSummary;
+}
+declare interface CoverageMap {
+  merge: (data: Object) => void;
+  getCoverageSummary: () => FileCoverage;
+  data: RawCoverage;
+  addFileCoverage: (fileCoverage: RawFileCoverage) => void;
+  files: () => Array<string>;
+  fileCoverageFor: (file: string) => FileCoverage;
+}
+declare interface SerializableError {
+  code?: null | void | {};
+  message: string;
+  stack: null | void | string;
+  type?: string;
+}
+declare interface FailedAssertion {
+  matcherName: string;
+  message?: string;
+  actual?: any;
+  pass?: boolean;
+  expected?: any;
+  isNot?: boolean;
+  stack?: string;
+}
+type Status = 'passed' | 'failed' | 'skipped' | 'pending';
+type Bytes = number;
+type Milliseconds = number;
+declare interface Callsite {
+  column: number;
+  line: number;
+}
+export { Callsite };
+declare interface AssertionResult {
+  ancestorTitles: Array<string>;
+  duration?: null | void | Milliseconds;
+  failureMessages: Array<string>;
+  fullName: string;
+  location: null | void | Callsite;
+  numPassingAsserts: number;
+  status: Status;
+  title: string;
+}
+declare interface FormattedAssertionResult {
+  failureMessages: Array<string> | null;
+  fullName: string;
+  location: null | void | Callsite;
+  status: Status;
+  title: string;
+}
+declare interface SnapshotSummary {
+  added: number;
+  didUpdate: boolean;
+  failure: boolean;
+  filesAdded: number;
+  filesRemoved: number;
+  filesUnmatched: number;
+  filesUpdated: number;
+  matched: number;
+  total: number;
+  unchecked: number;
+  uncheckedKeys: Array<string>;
+  unmatched: number;
+  updated: number;
+}
+declare interface TestResult {
+  console: null | void | ConsoleBuffer;
+  coverage?: RawCoverage;
+  displayName: null | void | string;
+  failureMessage: null | void | string;
+  leaks: boolean;
+  memoryUsage?: Bytes;
+  numFailingTests: number;
+  numPassingTests: number;
+  numPendingTests: number;
+  perfStats: {
+    end: Milliseconds;
+    start: Milliseconds;
+  };
+  skipped: boolean;
+  snapshot: {
+    added: number;
+    fileDeleted: boolean;
+    matched: number;
+    unchecked: number;
+    uncheckedKeys: Array<string>;
+    unmatched: number;
+    updated: number;
+  };
+  sourceMaps: {
+    [sourcePath: string]: string;
+  };
+  testExecError?: SerializableError;
+  testFilePath: string;
+  testResults: Array<AssertionResult>;
+}
+declare interface AggregatedResultWithoutCoverage {
+  numFailedTests: number;
+  numFailedTestSuites: number;
+  numPassedTests: number;
+  numPassedTestSuites: number;
+  numPendingTests: number;
+  numPendingTestSuites: number;
+  numRuntimeErrorTestSuites: number;
+  numTotalTests: number;
+  numTotalTestSuites: number;
+  snapshot: SnapshotSummary;
+  startTime: number;
+  success: boolean;
+  testResults: Array<TestResult>;
+  wasInterrupted: boolean;
+}
+type AggregatedResult = AggregatedResultWithoutCoverage & {
+  coverageMap?: null | void | CoverageMap;
+};
+declare interface Suite {
+  title: string;
+  suites: Array<Suite>;
+  tests: Array<AssertionResult>;
+}
+declare interface FormattedTestResult {
+  message: string;
+  name: string;
+  summary: string;
+  status: 'failed' | 'passed';
+  startTime: number;
+  endTime: number;
+  coverage: any;
+  assertionResults: Array<FormattedAssertionResult>;
+}
+declare interface FormattedTestResults {
+  coverageMap?: null | void | CoverageMap;
+  numFailedTests: number;
+  numFailedTestSuites: number;
+  numPassedTests: number;
+  numPassedTestSuites: number;
+  numPendingTests: number;
+  numPendingTestSuites: number;
+  numRuntimeErrorTestSuites: number;
+  numTotalTests: number;
+  numTotalTestSuites: number;
+  snapshot: SnapshotSummary;
+  startTime: number;
+  success: boolean;
+  testResults: Array<FormattedTestResult>;
+  wasInterrupted: boolean;
+}
+type CodeCoverageReporter = any;
+type CodeCoverageFormatter = (
+  coverage: null | void | RawCoverage,
+  reporter?: CodeCoverageReporter,
+) => null | void | Object;
+
+export { RawFileCoverage };
+export { RawCoverage };
+export { CoverageSummary };
+export { FileCoverage };
+export { CoverageMap };
+export { SerializableError };
+export { FailedAssertion };
+export { Status };
+export { Bytes };
+export { Milliseconds };
+export { AssertionResult };
+export { FormattedAssertionResult };
+export { AggregatedResultWithoutCoverage };
+export { AggregatedResult };
+export { Suite };
+export { TestResult };
+export { FormattedTestResult };
+export { FormattedTestResults };
+export { CodeCoverageReporter };
+export { CodeCoverageFormatter };
+export { SnapshotSummary };
+"
+`;
+
+exports[`./TestRunner.js.flow 1`] = `
+"import { Context } from './Context';
+import { Path } from './Config';
+import { TestWatcher as _TestWatcher } from 'jest-cli';
+import { SerializableError } from 'types/TestResult';
+import { TestResult } from 'types/TestResult';
+import { AggregatedResult } from 'types/TestResult';
+import { ReporterOnStartOptions } from 'types/Reporters';
+import { GlobalConfig } from './Config';
+import { ProjectConfig } from './Config';
+import { Environment } from 'types/Environment';
+import Runtime from 'jest-runtime';
+
+declare interface Test {
+  context: Context;
+  duration: null | void | number;
+  path: Path;
+}
+type TestWatcher = _TestWatcher;
+type OnTestStart = (Test: Test) => Promise<void>;
+type OnTestFailure = (
+  Test: Test,
+  SerializableError: SerializableError,
+) => Promise<any>;
+type OnTestSuccess = (Test: Test, TestResult: TestResult) => Promise<any>;
+declare interface Reporter {
+  onTestResult: (
+    test: Test,
+    testResult: TestResult,
+    aggregatedResult: AggregatedResult,
+  ) => null | void | Promise<void>;
+  onRunStart: (
+    results: AggregatedResult,
+    options: ReporterOnStartOptions,
+  ) => null | void | Promise<void>;
+  onTestStart: (test: Test) => null | void | Promise<void>;
+  onRunComplete: (
+    contexts: Set<Context>,
+    results: AggregatedResult,
+  ) => null | void | Promise<void>;
+  getLastError: () => null | void | Error;
+}
+type TestFramework = (
+  globalConfig: GlobalConfig,
+  config: ProjectConfig,
+  environment: Environment,
+  runtime: Runtime,
+  testPath: string,
+) => Promise<TestResult>;
+declare interface TestRunnerOptions {
+  serial: boolean;
+}
+
+export { Test };
+export { TestWatcher };
+export { OnTestStart };
+export { OnTestFailure };
+export { OnTestSuccess };
+export { Reporter };
+export { TestFramework };
+export { TestRunnerOptions };
+"
+`;
+
+exports[`./Transform.js.flow 1`] = `
+"import { Script } from 'vm';
+import { Path } from 'types/Config';
+import { ProjectConfig } from 'types/Config';
+
+declare interface TransformedSource {
+  code: string;
+  map: null | void | Object | string;
+}
+declare interface TransformResult {
+  script: Script;
+  mapCoverage: boolean;
+  sourceMapPath: null | void | string;
+}
+declare interface TransformOptions {
+  instrument: boolean;
+  returnSourceString?: boolean;
+}
+declare interface CacheKeyOptions {
+  instrument: boolean;
+  rootDir: string;
+}
+declare interface Transformer {
+  canInstrument?: boolean;
+  createTransformer?: (options: any) => Transformer;
+  getCacheKey: (
+    fileData: string,
+    filePath: Path,
+    configStr: string,
+    options: CacheKeyOptions,
+  ) => string;
+  process: (
+    sourceText: string,
+    sourcePath: Path,
+    config: ProjectConfig,
+    options?: TransformOptions,
+  ) => string | TransformedSource;
+}
+
+export { TransformedSource };
+export { TransformResult };
+export { TransformOptions };
+export { CacheKeyOptions };
+export { Transformer };
+"
+`;

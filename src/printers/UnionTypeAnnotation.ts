@@ -6,5 +6,12 @@ export default function printUnionTypeAnnotation(
   node: bt.UnionTypeAnnotation,
   ctx: Context,
 ): string {
-  return node.types.map(t => print(t, ctx)).join(' | ');
+  return node.types
+    .map(t => {
+      if (bt.isFunctionTypeAnnotation(t)) {
+        return `(${print(t, ctx)})`;
+      }
+      return print(t, ctx);
+    })
+    .join(' | ');
 }

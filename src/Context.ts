@@ -2,7 +2,18 @@ import codeFrame = require('babel-code-frame');
 import * as bt from 'babel-types';
 import print from './printers';
 
-const builtins = new Set(['Array', 'Function', 'Object', 'undefined']);
+const builtins = new Set([
+  'Array',
+  'Date',
+  'Error',
+  'Function',
+  'Object',
+  'Map',
+  'Promise',
+  'RegExp',
+  'Set',
+  'undefined',
+]);
 
 export interface SingleImportDeclaration extends bt.Node {
   type: 'SingleImportDeclaration';
@@ -22,7 +33,9 @@ export type DeclarationType =
   | SingleImportDeclaration
   | bt.TypeAlias
   | bt.DeclareFunction
-  | SingleVariableDeclaration;
+  | SingleVariableDeclaration
+  | bt.InterfaceDeclaration
+  | bt.DeclareClass;
 
 export interface ToStringOptions {
   commonJsDefaultExport?: boolean;
@@ -47,8 +60,22 @@ export class Output {
       if (builtins.has(id.name)) {
         return;
       }
+      switch (id.name) {
+        case 'tty$ReadStream':
+          this.imports.push(
+            `import {ReadStream as tty$ReadStream} from 'tty';`,
+          );
+          return;
+        case 'tty$WriteStream':
+          this.imports.push(
+            `import {WriteStream as tty$WriteStream} from 'tty';`,
+          );
+          return;
+      }
       throw this.ctx.getError(
-        'Unable to resolve the reference to ' + id.name,
+        'Unable to resolve the reference to ' +
+          id.name +
+          '. Maybe it should be a builtin?',
         id,
       );
     }

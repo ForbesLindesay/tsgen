@@ -2,11 +2,18 @@ import * as bt from 'babel-types';
 import Context from '../Context';
 import print from './';
 
-export function printFunctionTypeAnnotationParams(
-  node: bt.FunctionTypeAnnotation,
+export default function printObjectTypeCallProperty(
+  node: bt.ObjectTypeCallProperty,
   ctx: Context,
-) {
-  return node.params
+): string {
+  const value = node.value;
+  if (!bt.isFunctionTypeAnnotation(value)) {
+    throw ctx.getError('Expected function type annotation', value);
+  }
+  const typeParameters = value.typeParameters
+    ? print(value.typeParameters, ctx)
+    : '';
+  const params = value.params
     .map(p => {
       if (!p.name) {
         const type = print(p.typeAnnotation, ctx).trim();
@@ -21,26 +28,17 @@ export function printFunctionTypeAnnotationParams(
       )}`;
     })
     .concat(
-      node.rest
-        ? [`...${node.rest.name}: ${print(node.rest.typeAnnotation, ctx)}`]
+      value.rest
+        ? [`...${value.rest.name}: ${print(value.rest.typeAnnotation, ctx)}`]
         : [],
     )
     .join(', ');
-}
-export default function printFunctionTypeAnnotation(
-  node: bt.FunctionTypeAnnotation,
-  ctx: Context,
-): string {
-  const typeParameters = node.typeParameters
-    ? print(node.typeParameters, ctx)
-    : '';
-  const params = printFunctionTypeAnnotationParams(node, ctx);
-  if (!node.returnType) {
+  if (!value.returnType) {
     throw ctx.getError(
       'This function is exported, so it needs a return type.',
       node,
     );
   }
-  const returnType = print(node.returnType, ctx);
-  return `${typeParameters}(${params}) => ${returnType}`;
+  const returnType = print(value.returnType, ctx);
+  return `${typeParameters}(${params}): ${returnType}`;
 }

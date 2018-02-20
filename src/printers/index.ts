@@ -7,7 +7,9 @@ import Context, {
 import printAnyTypeAnnotation from './AnyTypeAnnotation';
 import printBooleanTypeAnnotation from './BooleanTypeAnnotation';
 import printCallExpression from './CallExpression';
+import printDeclareClass from './DeclareClass';
 import printDeclareFunction from './DeclareFunction';
+import printExistentialTypeParam from './ExistentialTypeParam';
 import printExportSpecifier from './ExportSpecifier';
 import printFunctionDeclaration from './FunctionDeclaration';
 import printFunctionTypeAnnotation from './FunctionTypeAnnotation';
@@ -15,13 +17,19 @@ import printGenericTypeAnnotation from './GenericTypeAnnotation';
 import printIdentifier from './Identifier';
 import printImportDefaultSpecifier from './ImportDefaultSpecifier';
 import printImportSpecifier from './ImportSpecifier';
+import printInterfaceDeclaration from './InterfaceDeclaration';
+import printIntersectionTypeAnnotation from './IntersectionTypeAnnotation';
+import printMixedTypeAnnotation from './MixedTypeAnnotation';
 import printNullLiteralTypeAnnotation from './NullLiteralTypeAnnotation';
 import printNullableTypeAnnotation from './NullableTypeAnnotation';
 import printNumberTypeAnnotation from './NumberTypeAnnotation';
 import printNumericLiteral from './NumericLiteral';
+import printNumericLiteralTypeAnnotation from './NumericLiteralTypeAnnotation';
 import printObjectExpression from './ObjectExpression';
 import printObjectProperty from './ObjectProperty';
 import printObjectTypeAnnotation from './ObjectTypeAnnotation';
+import printObjectTypeCallProperty from './ObjectTypeCallProperty';
+import printObjectTypeIndexer from './ObjectTypeIndexer';
 import printObjectTypeProperty from './ObjectTypeProperty';
 import printSingleImportDeclaration from './SingleImportDeclaration';
 import printSingleVariableDeclaration from './SingleVariableDeclaration';
@@ -44,8 +52,12 @@ export default function print(node: bt.Node, ctx: Context): string {
       return printBooleanTypeAnnotation(node as bt.BooleanTypeAnnotation, ctx);
     case 'CallExpression':
       return printCallExpression(node as bt.CallExpression, ctx);
+    case 'DeclareClass':
+      return printDeclareClass(node as bt.DeclareClass, ctx);
     case 'DeclareFunction':
       return printDeclareFunction(node as bt.DeclareFunction, ctx);
+    case 'ExistentialTypeParam':
+      return printExistentialTypeParam(node as bt.ExistentialTypeParam, ctx);
     case 'ExportSpecifier':
       return printExportSpecifier(node as bt.ExportSpecifier, ctx);
     case 'FunctionDeclaration':
@@ -66,6 +78,15 @@ export default function print(node: bt.Node, ctx: Context): string {
       );
     case 'ImportSpecifier':
       return printImportSpecifier(node as bt.ImportSpecifier, ctx);
+    case 'InterfaceDeclaration':
+      return printInterfaceDeclaration(node as bt.InterfaceDeclaration, ctx);
+    case 'IntersectionTypeAnnotation':
+      return printIntersectionTypeAnnotation(
+        node as bt.IntersectionTypeAnnotation,
+        ctx,
+      );
+    case 'MixedTypeAnnotation':
+      return printMixedTypeAnnotation(node as bt.MixedTypeAnnotation, ctx);
     case 'NullLiteralTypeAnnotation':
       return printNullLiteralTypeAnnotation(
         node as bt.NullLiteralTypeAnnotation,
@@ -80,12 +101,24 @@ export default function print(node: bt.Node, ctx: Context): string {
       return printNumberTypeAnnotation(node as bt.NumberTypeAnnotation, ctx);
     case 'NumericLiteral':
       return printNumericLiteral(node as bt.NumericLiteral, ctx);
+    case 'NumericLiteralTypeAnnotation':
+      return printNumericLiteralTypeAnnotation(
+        node as bt.NumericLiteralTypeAnnotation,
+        ctx,
+      );
     case 'ObjectExpression':
       return printObjectExpression(node as bt.ObjectExpression, ctx);
     case 'ObjectProperty':
       return printObjectProperty(node as bt.ObjectProperty, ctx);
     case 'ObjectTypeAnnotation':
       return printObjectTypeAnnotation(node as bt.ObjectTypeAnnotation, ctx);
+    case 'ObjectTypeCallProperty':
+      return printObjectTypeCallProperty(
+        node as bt.ObjectTypeCallProperty,
+        ctx,
+      );
+    case 'ObjectTypeIndexer':
+      return printObjectTypeIndexer(node as bt.ObjectTypeIndexer, ctx);
     case 'ObjectTypeProperty':
       return printObjectTypeProperty(node as bt.ObjectTypeProperty, ctx);
     case 'SingleImportDeclaration':

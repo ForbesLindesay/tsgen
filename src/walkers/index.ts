@@ -1,11 +1,13 @@
 import {writeFileSync} from 'fs';
 import * as bt from 'babel-types';
 import Context from '../Context';
+import walkDeclareClass from './DeclareClass';
 import walkDeclareFunction from './DeclareFunction';
 import walkExportDefaultDeclaration from './ExportDefaultDeclaration';
 import walkExportNamedDeclaration from './ExportNamedDeclaration';
 import walkFunctionDeclaration from './FunctionDeclaration';
 import walkImportDeclaration from './ImportDeclaration';
+import walkInterfaceDeclaration from './InterfaceDeclaration';
 import walkTypeAlias from './TypeAlias';
 import walkVariableDeclaration from './VariableDeclaration';
 
@@ -14,6 +16,8 @@ export default function walk(
   ctx: Context,
 ): bt.Identifier[] {
   switch (node.type) {
+    case 'DeclareClass':
+      return walkDeclareClass(node as bt.DeclareClass, ctx);
     case 'DeclareFunction':
       return walkDeclareFunction(node as bt.DeclareFunction, ctx);
     case 'ExportDefaultDeclaration':
@@ -27,6 +31,8 @@ export default function walk(
       return walkFunctionDeclaration(node as bt.FunctionDeclaration, ctx);
     case 'ImportDeclaration':
       return walkImportDeclaration(node as bt.ImportDeclaration, ctx);
+    case 'InterfaceDeclaration':
+      return walkInterfaceDeclaration(node as bt.InterfaceDeclaration, ctx);
     case 'TypeAlias':
       return walkTypeAlias(node as bt.TypeAlias, ctx);
     case 'VariableDeclaration':

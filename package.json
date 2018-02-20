@@ -12,10 +12,10 @@
     "tsgen": "./lib/cli.js"
   },
   "dependencies": {
-    "@types/babel-code-frame": "^6.20.1",
-    "@types/babel-types": "^6.7.16",
-    "@types/babylon": "^6.16.1",
-    "@types/micromatch": "^2.3.29",
+    "@types/babel-code-frame": "*",
+    "@types/babel-types": "*",
+    "@types/babylon": "*",
+    "@types/micromatch": "*",
     "babel-code-frame": "^6.22.0",
     "babel-types": "^6.25.0",
     "babylon": "^6.17.4",
