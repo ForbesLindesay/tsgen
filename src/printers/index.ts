@@ -5,13 +5,19 @@ import Context, {
   SingleVariableDeclaration,
 } from '../Context';
 import printAnyTypeAnnotation from './AnyTypeAnnotation';
+import printArrayTypeAnnotation from './ArrayTypeAnnotation';
+import printArrowFunctionExpression from './ArrowFunctionExpression';
+import printBinaryExpression from './BinaryExpression';
+import printBooleanLiteral from './BooleanLiteral';
 import printBooleanTypeAnnotation from './BooleanTypeAnnotation';
 import printCallExpression from './CallExpression';
+import printConditionalExpression from './ConditionalExpression';
 import printDeclareClass from './DeclareClass';
 import printDeclareFunction from './DeclareFunction';
 import printExistentialTypeParam from './ExistentialTypeParam';
 import printExportSpecifier from './ExportSpecifier';
 import printFunctionDeclaration from './FunctionDeclaration';
+import printFunctionExpression from './FunctionExpression';
 import printFunctionTypeAnnotation from './FunctionTypeAnnotation';
 import printGenericTypeAnnotation from './GenericTypeAnnotation';
 import printIdentifier from './Identifier';
@@ -19,6 +25,8 @@ import printImportDefaultSpecifier from './ImportDefaultSpecifier';
 import printImportSpecifier from './ImportSpecifier';
 import printInterfaceDeclaration from './InterfaceDeclaration';
 import printIntersectionTypeAnnotation from './IntersectionTypeAnnotation';
+import printLogicalExpression from './LogicalExpression';
+import printMemberExpression from './MemberExpression';
 import printMixedTypeAnnotation from './MixedTypeAnnotation';
 import printNullLiteralTypeAnnotation from './NullLiteralTypeAnnotation';
 import printNullableTypeAnnotation from './NullableTypeAnnotation';
@@ -36,9 +44,11 @@ import printSingleVariableDeclaration from './SingleVariableDeclaration';
 import printStringLiteral from './StringLiteral';
 import printStringLiteralTypeAnnotation from './StringLiteralTypeAnnotation';
 import printStringTypeAnnotation from './StringTypeAnnotation';
+import printTemplateLiteral from './TemplateLiteral';
 import printTupleTypeAnnotation from './TupleTypeAnnotation';
 import printTypeAlias from './TypeAlias';
 import printTypeAnnotation from './TypeAnnotation';
+import printTypeCastExpression from './TypeCastExpression';
 import printTypeParameterInstantiation from './TypeParameterInstantiation';
 import printTypeofTypeAnnotation from './TypeofTypeAnnotation';
 import printUnionTypeAnnotation from './UnionTypeAnnotation';
@@ -48,10 +58,23 @@ export default function print(node: bt.Node, ctx: Context): string {
   switch (node.type) {
     case 'AnyTypeAnnotation':
       return printAnyTypeAnnotation(node as bt.AnyTypeAnnotation, ctx);
+    case 'ArrayTypeAnnotation':
+      return printArrayTypeAnnotation(node as bt.ArrayTypeAnnotation, ctx);
+    case 'ArrowFunctionExpression':
+      return printArrowFunctionExpression(
+        node as bt.ArrowFunctionExpression,
+        ctx,
+      );
+    case 'BinaryExpression':
+      return printBinaryExpression(node as bt.BinaryExpression, ctx);
+    case 'BooleanLiteral':
+      return printBooleanLiteral(node as bt.BooleanLiteral, ctx);
     case 'BooleanTypeAnnotation':
       return printBooleanTypeAnnotation(node as bt.BooleanTypeAnnotation, ctx);
     case 'CallExpression':
       return printCallExpression(node as bt.CallExpression, ctx);
+    case 'ConditionalExpression':
+      return printConditionalExpression(node as bt.ConditionalExpression, ctx);
     case 'DeclareClass':
       return printDeclareClass(node as bt.DeclareClass, ctx);
     case 'DeclareFunction':
@@ -62,6 +85,8 @@ export default function print(node: bt.Node, ctx: Context): string {
       return printExportSpecifier(node as bt.ExportSpecifier, ctx);
     case 'FunctionDeclaration':
       return printFunctionDeclaration(node as bt.FunctionDeclaration, ctx);
+    case 'FunctionExpression':
+      return printFunctionExpression(node as bt.FunctionExpression, ctx);
     case 'FunctionTypeAnnotation':
       return printFunctionTypeAnnotation(
         node as bt.FunctionTypeAnnotation,
@@ -85,6 +110,10 @@ export default function print(node: bt.Node, ctx: Context): string {
         node as bt.IntersectionTypeAnnotation,
         ctx,
       );
+    case 'LogicalExpression':
+      return printLogicalExpression(node as bt.LogicalExpression, ctx);
+    case 'MemberExpression':
+      return printMemberExpression(node as bt.MemberExpression, ctx);
     case 'MixedTypeAnnotation':
       return printMixedTypeAnnotation(node as bt.MixedTypeAnnotation, ctx);
     case 'NullLiteralTypeAnnotation':
@@ -137,12 +166,16 @@ export default function print(node: bt.Node, ctx: Context): string {
       );
     case 'StringTypeAnnotation':
       return printStringTypeAnnotation(node as bt.StringTypeAnnotation, ctx);
+    case 'TemplateLiteral':
+      return printTemplateLiteral(node as bt.TemplateLiteral, ctx);
     case 'TupleTypeAnnotation':
       return printTupleTypeAnnotation(node as bt.TupleTypeAnnotation, ctx);
     case 'TypeAlias':
       return printTypeAlias(node as bt.TypeAlias, ctx);
     case 'TypeAnnotation':
       return printTypeAnnotation(node as bt.TypeAnnotation, ctx);
+    case 'TypeCastExpression':
+      return printTypeCastExpression(node as bt.TypeCastExpression, ctx);
     case 'TypeParameterInstantiation':
       return printTypeParameterInstantiation(
         node as bt.TypeParameterInstantiation,
