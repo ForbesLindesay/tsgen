@@ -5,6 +5,7 @@ export default function walkExpressionStatement(
   node: bt.ExpressionStatement,
   ctx: Context,
 ): bt.Identifier[] {
+  return [];
   // N.B. it's not really safe to ignore expression statements, but often it turns out fine
   // throw ctx.getError('Unsupported type ExpressionStatement', node);
 }
